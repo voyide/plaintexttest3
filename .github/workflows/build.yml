@@ -25,8 +25,15 @@ jobs:
       - name: Create Android Files
         run: flutter create .
 
+      - name: Rename App to PLAIN TEST
+        run: |
+          sed -i 's/android:label="plain_test"/android:label="PLAIN TEST"/g' android/app/src/main/AndroidManifest.xml
+
       - name: Get Dependencies
         run: flutter pub get
+
+      - name: Generate App Icons
+        run: dart run flutter_launcher_icons
 
       - name: Build APK
         run: flutter build apk --release
